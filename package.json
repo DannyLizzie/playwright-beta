@@ -1,0 +1,16 @@
+{
+  "name": "playwright-beta",
+  "version": "1.0.0",
+  "description": "Use Playwright for real alongside an automation site, to practice what I have learnt so far.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test --project=chromium"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.14.2"
+  }
+}
