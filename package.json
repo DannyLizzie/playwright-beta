@@ -4,7 +4,7 @@
 	"description": "Use Playwright for real alongside an automation site, to practice what I have learnt so far.",
 	"main": "index.js",
 	"scripts": {
-		"test": "npx playwright test --project=chromium --headed"
+		"test": "npx playwright test --project=chromium"
 	},
 	"keywords": [],
 	"author": "",
