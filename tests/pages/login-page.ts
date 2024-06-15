@@ -3,16 +3,16 @@ import { Common } from './common';
 
 export class LoginPage extends Common {
 	readonly _page: Page;
-	readonly _usernameInput: Locator;
-	readonly _passwordInput: Locator;
-	readonly _loginButton: Locator;
-	readonly _forgotPasswordButton: Locator;
+	private readonly _usernameInput: Locator;
+	private readonly _passwordInput: Locator;
+	private readonly _loginButton: Locator;
+	private readonly _forgotPasswordButton: Locator;
 
 	constructor(page: Page) {
 		super(page);
 		this._usernameInput = page.locator('input[placeholder="Username"]');
 		this._passwordInput = page.locator('input[placeholder="Password"]');
-		this._loginButton = page.locator('//div[@class="oxd-button oxd-button--medium oxd-button--main orangehrm-login-button"]');
+		this._loginButton = page.locator('//button[@type="submit"]');
 		this._forgotPasswordButton = page.locator('text=Forgot your password? ');
 	}
 
