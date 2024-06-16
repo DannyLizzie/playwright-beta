@@ -17,7 +17,7 @@ test('A user attempts to interact with the OrangeHRM.Inc link on the login page'
 	await page.close();
 });
 
-test.only('A previously registered user successfully logs in to the Orange HRM service', async ({
+test('A previously registered user successfully logs in to the Orange HRM service', async ({
 	base,
 	loginPage,
 	page,
@@ -31,3 +31,11 @@ test.only('A previously registered user successfully logs in to the Orange HRM s
 		'https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index',
 	);
 });
+
+test('A user attempts to use the LinkedIn link on the login page', async ({ page }) => {});
+
+test('A user attempts to use the Twitter/X link on the login page', async ({ page }) => {});
+
+test('A user attempts to use the Facebook link on the login page', async ({ page }) => {});
+
+test('A user attempts to use the YouTube link on the login page', async ({ page }) => {});

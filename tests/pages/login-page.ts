@@ -7,6 +7,7 @@ export class LoginPage extends Common {
 	private readonly _passwordInput: Locator;
 	private readonly _loginButton: Locator;
 	private readonly _forgotPasswordButton: Locator;
+	private readonly _linkedInButton: Locator;
 
 	constructor(page: Page) {
 		super(page);
