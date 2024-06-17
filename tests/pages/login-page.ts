@@ -7,6 +7,10 @@ export class LoginPage extends Common {
 	private readonly _passwordInput: Locator;
 	private readonly _loginButton: Locator;
 	private readonly _forgotPasswordButton: Locator;
+	private readonly _linkedInButton: Locator;
+	private readonly _twitterButton: Locator;
+	private readonly _facebookButton: Locator;
+	private readonly _youTubeButton: Locator;
 
 	constructor(page: Page) {
 		super(page);
@@ -14,6 +18,12 @@ export class LoginPage extends Common {
 		this._passwordInput = page.locator('input[placeholder="Password"]');
 		this._loginButton = page.locator('//button[@type="submit"]');
 		this._forgotPasswordButton = page.locator('text=Forgot your password? ');
+		this._linkedInButton = page.locator(
+			'//a[@href="https://www.linkedin.com/company/orangehrm/mycompany/"]',
+		);
+		this._twitterButton = page.locator('//a[@href="https://twitter.com/orangehrm?lang=en"]');
+		this._facebookButton = page.locator('//a[@href="https://www.facebook.com/OrangeHRM/"]');
+		this._youTubeButton = page.locator('//a[@href="https://www.youtube.com/c/OrangeHRMInc"]');
 	}
 
 	async navigateToLoginPage(loginPageUrl: string) {
@@ -34,5 +44,21 @@ export class LoginPage extends Common {
 
 	async pressForgotPasswordButton() {
 		await this.press(this._forgotPasswordButton);
+	}
+
+	async pressLinkedInButton() {
+		await this.press(this._linkedInButton);
+	}
+
+	async pressTwitterButton() {
+		await this.press(this._twitterButton);
+	}
+
+	async pressFacebookButton() {
+		await this.press(this._facebookButton);
+	}
+
+	async pressYouTubeButton() {
+		await this.press(this._youTubeButton);
 	}
 }
