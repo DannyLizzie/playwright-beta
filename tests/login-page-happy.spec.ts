@@ -39,16 +39,13 @@ test(
 	'A user attempts to use the LinkedIn link on the login page',
 	{ tag: ['@generic-user', '@login-page'] },
 	async ({ base, loginPage, page }) => {
-		await base.navigateToUrl('/web/index.php//auth/login');
+		await base.navigateToUrl('/web/index.php/auth/login');
+		const linkedInPage = page.waitForEvent('popup');
+		await loginPage.pressLinkedInButton();
+		const linkedIn = await linkedInPage;
 
-		const [linkedInPage] = await Promise.all([
-			page.waitForEvent('popup'),
-			loginPage.pressLinkedInButton(),
-		]);
-		await linkedInPage.waitForLoadState();
-
-		await expect(linkedInPage).toHaveURL('https://www.linkedin.com/company/orangehrm');
-		await linkedInPage.close();
+		await expect(linkedIn).toHaveURL('https://www.linkedin.com/company/orangehrm');
+		await linkedIn.close();
 		await page.close();
 	},
 );
@@ -57,16 +54,13 @@ test(
 	'A user attempts to use the Twitter/X link on the login page',
 	{ tag: ['@generic-user', '@login-page'] },
 	async ({ base, loginPage, page }) => {
-		await base.navigateToUrl('/web/index.php//auth/login');
+		await base.navigateToUrl('/web/index.php/auth/login');
+		const twitterPage = page.waitForEvent('popup');
+		await loginPage.pressTwitterButton();
+		const twitter = await twitterPage;
 
-		const [twitterPage] = await Promise.all([
-			page.waitForEvent('popup'),
-			loginPage.pressTwitterButton(),
-		]);
-		await twitterPage.waitForLoadState();
-
-		await expect(twitterPage).toHaveURL('https://x.com/orangehrm?lang=en');
-		await twitterPage.close();
+		await expect(twitter).toHaveURL('https://x.com/orangehrm?lang=en');
+		await twitter.close();
 		await page.close();
 	},
 );
@@ -75,16 +69,13 @@ test(
 	'A user attempts to use the Facebook link on the login page',
 	{ tag: ['@generic-user', '@login-page'] },
 	async ({ base, loginPage, page }) => {
-		await base.navigateToUrl('/web/index.php//auth/login');
+		await base.navigateToUrl('/web/index.php/auth/login');
+		const facebookPage = page.waitForEvent('popup');
+		await loginPage.pressFacebookButton();
+		const facebook = await facebookPage;
 
-		const [facebookPage] = await Promise.all([
-			page.waitForEvent('popup'),
-			loginPage.pressFacebookButton(),
-		]);
-		await facebookPage.waitForLoadState();
-
-		await expect(facebookPage).toHaveURL('https://www.facebook.com/OrangeHRM/');
-		await facebookPage.close();
+		await expect(facebook).toHaveURL('https://www.facebook.com/OrangeHRM/');
+		await facebook.close();
 		await page.close();
 	},
 );
@@ -93,22 +84,21 @@ test(
 	'A user attempts to use the YouTube link on the login page',
 	{ tag: ['@generic-user', '@login-page'] },
 	async ({ base, loginPage, page }) => {
-		await base.navigateToUrl('/web/index.php//auth/login');
+		await base.navigateToUrl('/web/index.php/auth/login');
+		const youTubePage = page.waitForEvent('popup');
+		await loginPage.pressYouTubeButton();
+		const youTube = await youTubePage;
 
-		const [youTubePage] = await Promise.all([
-			page.waitForEvent('popup'),
-			loginPage.pressYouTubeButton(),
-		]);
-		await youTubePage.waitForLoadState();
-
-		const orangeHome = youTubePage.getByTitle('(1) OrangeHRM Inc - YouTube', { exact: true });
-		const consentPage = youTubePage.getByTitle('Before you continue to YouTube', {
+		const orangeHome = youTube.getByTitle('(1) OrangeHRM Inc - YouTube', {
+			exact: true,
+		});
+		const consentPage = youTube.getByTitle('Before you continue to YouTube', {
 			exact: true,
 		});
 
 		expect(orangeHome.or(consentPage)).toBeDefined();
 
-		await youTubePage.close();
+		await youTube.close();
 		await page.close();
 	},
 );

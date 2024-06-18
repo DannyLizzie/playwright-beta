@@ -8,7 +8,7 @@ export class Base {
 	}
 
 	async navigateToUrl(url: string) {
-		await this._page.goto(url);
+		await this._page.goto(url, { waitUntil: 'load' });
 	}
 
 	async fillField(locator: Locator, input: string) {
