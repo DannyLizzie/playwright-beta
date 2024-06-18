@@ -5,7 +5,7 @@ test(
 	'A user attempts to interact with the OrangeHRM.Inc link on the login page',
 	{ tag: ['@generic-user', '@login-page'] },
 	async ({ base, common, page }) => {
-		await base.navigateToUrl('/auth/login');
+		await base.navigateToUrl('/web/index.php/auth/login');
 
 		const [homePage] = await Promise.all([
 			page.waitForEvent('popup'),
@@ -24,12 +24,12 @@ test(
 	'A previously registered user successfully logs in to the Orange HRM service',
 	{ tag: ['@happy-path', '@login-page'] },
 	async ({ base, loginPage, page }) => {
-		await base.navigateToUrl('/auth/login');
+		await base.navigateToUrl('/web/index.php/auth/login');
 		await loginPage.fillUserName('Admin');
 		await loginPage.fillPassword('admin123');
 		await loginPage.pressLoginButton();
 
-		await expect(page).toHaveURL('/dashboard/index');
+		await expect(page).toHaveURL('/web/index.php/dashboard/index');
 
 		await page.close();
 	},
@@ -39,7 +39,7 @@ test(
 	'A user attempts to use the LinkedIn link on the login page',
 	{ tag: ['@generic-user', '@login-page'] },
 	async ({ base, loginPage, page }) => {
-		await base.navigateToUrl('/auth/login');
+		await base.navigateToUrl('/web/index.php//auth/login');
 
 		const [linkedInPage] = await Promise.all([
 			page.waitForEvent('popup'),
@@ -57,7 +57,7 @@ test(
 	'A user attempts to use the Twitter/X link on the login page',
 	{ tag: ['@generic-user', '@login-page'] },
 	async ({ base, loginPage, page }) => {
-		await base.navigateToUrl('/auth/login');
+		await base.navigateToUrl('/web/index.php//auth/login');
 
 		const [twitterPage] = await Promise.all([
 			page.waitForEvent('popup'),
@@ -75,7 +75,7 @@ test(
 	'A user attempts to use the Facebook link on the login page',
 	{ tag: ['@generic-user', '@login-page'] },
 	async ({ base, loginPage, page }) => {
-		await base.navigateToUrl('/auth/login');
+		await base.navigateToUrl('/web/index.php//auth/login');
 
 		const [facebookPage] = await Promise.all([
 			page.waitForEvent('popup'),
@@ -93,7 +93,7 @@ test(
 	'A user attempts to use the YouTube link on the login page',
 	{ tag: ['@generic-user', '@login-page'] },
 	async ({ base, loginPage, page }) => {
-		await base.navigateToUrl('/auth/login');
+		await base.navigateToUrl('/web/index.php//auth/login');
 
 		const [youTubePage] = await Promise.all([
 			page.waitForEvent('popup'),
