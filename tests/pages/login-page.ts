@@ -18,12 +18,10 @@ export class LoginPage extends Common {
 		this._passwordInput = page.locator('input[placeholder="Password"]');
 		this._loginButton = page.locator('//button[@type="submit"]');
 		this._forgotPasswordButton = page.locator('text=Forgot your password? ');
-		this._linkedInButton = page.locator(
-			'//a[@href="https://www.linkedin.com/company/orangehrm/mycompany/"]',
-		);
-		this._twitterButton = page.locator('//a[@href="https://twitter.com/orangehrm?lang=en"]');
-		this._facebookButton = page.locator('//a[@href="https://www.facebook.com/OrangeHRM/"]');
-		this._youTubeButton = page.locator('//a[@href="https://www.youtube.com/c/OrangeHRMInc"]');
+		this._linkedInButton = page.getByRole('link').first();
+		this._facebookButton = page.getByRole('link').nth(1);
+		this._twitterButton = page.getByRole('link').nth(2);
+		this._youTubeButton = page.getByRole('link').nth(3);
 	}
 
 	async navigateToLoginPage(loginPageUrl: string) {
