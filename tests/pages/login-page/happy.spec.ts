@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from './fixtures/login-page-fixture';
+import { test } from '../../fixtures/login-page-fixture';
 
 test(
 	'A user attempts to interact with the OrangeHRM.Inc link on the login page',

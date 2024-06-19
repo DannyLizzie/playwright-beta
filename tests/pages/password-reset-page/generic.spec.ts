@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from './fixtures/password-reset-page-fixture';
+import { test } from '../../fixtures/password-reset-page-fixture';
 
 test(
 	'A user attempts to request a password reset',
