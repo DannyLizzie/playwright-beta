@@ -22,4 +22,8 @@ export class Base {
 	async press(locator: Locator) {
 		await locator.click();
 	}
+
+	async elementIsPresentOnDom(locator: Locator) {
+		await locator.isVisible();
+	}
 }

@@ -11,6 +11,9 @@ export class LoginPage extends Common {
 	private readonly _twitterButton: Locator;
 	private readonly _facebookButton: Locator;
 	private readonly _youTubeButton: Locator;
+	private readonly _genericValidationElement: Locator;
+	private readonly _usernameValidationElement: Locator;
+	private readonly _passwordValidationElement: Locator;
 
 	constructor(page: Page) {
 		super(page);
@@ -22,6 +25,9 @@ export class LoginPage extends Common {
 		this._facebookButton = page.getByRole('link').nth(1);
 		this._twitterButton = page.getByRole('link').nth(2);
 		this._youTubeButton = page.getByRole('link').nth(3);
+		this._genericValidationElement = page.getByText('Required');
+		this._usernameValidationElement = page.getByText('Required').first();
+		this._passwordValidationElement = page.getByText('Required').nth(1);
 	}
 
 	async navigateToLoginPage(loginPageUrl: string) {
@@ -58,5 +64,17 @@ export class LoginPage extends Common {
 
 	async pressYouTubeButton() {
 		await this.press(this._youTubeButton);
+	}
+
+	async genericValidationElementIsPresent() {
+		await this.elementIsPresentOnDom(this._genericValidationElement);
+	}
+
+	async usernameValidationElementIsPresent() {
+		await this.elementIsPresentOnDom(this._usernameValidationElement);
+	}
+
+	async passwordValidationElementIsPresent() {
+		await this.elementIsPresentOnDom(this._passwordValidationElement);
 	}
 }
