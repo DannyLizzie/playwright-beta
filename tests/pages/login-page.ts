@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Locator, Page } from '@playwright/test';
 import { Common } from './common';
 
@@ -14,6 +15,11 @@ export class LoginPage extends Common {
 	private readonly _genericValidationElement: Locator;
 	private readonly _usernameValidationElement: Locator;
 	private readonly _passwordValidationElement: Locator;
+	private readonly _goodActorUserName = `${process.env.GOOD_ACTOR_USERNAME}`;
+	private readonly _goodActorPassword = `${process.env.GOOD_ACTOR_PASSWORD}`;
+	private readonly _badActorUserName = `${process.env.BAD_ACTOR_USERNAME}`;
+	private readonly _badActorPassword = `${process.env.BAD_ACTOR_PASSWORD}`;
+	private readonly _emptyString = `${process.env.EMPTY_INPUT}`;
 
 	constructor(page: Page) {
 		super(page);
@@ -34,12 +40,28 @@ export class LoginPage extends Common {
 		await this.navigateToUrl(loginPageUrl);
 	}
 
-	async fillUserName(username: string) {
-		await this.fillFieldSequentially(this._usernameInput, username);
+	async fillUserNameWithEmptyString() {
+		await this.fillFieldSequentially(this._usernameInput, this._emptyString);
 	}
 
-	async fillPassword(password: string) {
-		await this.fillFieldSequentially(this._passwordInput, password);
+	async fillPasswordWithEmptyString() {
+		await this.fillFieldSequentially(this._usernameInput, this._emptyString);
+	}
+
+	async fillGoodActorUserName() {
+		await this.fillFieldSequentially(this._usernameInput, this._goodActorUserName);
+	}
+
+	async fillGoodActorPassword() {
+		await this.fillFieldSequentially(this._passwordInput, this._goodActorPassword);
+	}
+
+	async fillBadActorUserName() {
+		await this.fillFieldSequentially(this._usernameInput, this._badActorUserName);
+	}
+
+	async fillBadActorPassword() {
+		await this.fillFieldSequentially(this._passwordInput, this._badActorPassword);
 	}
 
 	async pressLoginButton() {

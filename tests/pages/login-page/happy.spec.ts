@@ -6,8 +6,8 @@ test(
 	{ tag: ['@happy-path', '@login-page'] },
 	async ({ base, loginPage, page }) => {
 		await base.navigateToUrl('/web/index.php/auth/login');
-		await loginPage.fillUserName('Admin');
-		await loginPage.fillPassword('admin123');
+		await loginPage.fillGoodActorUserName();
+		await loginPage.fillGoodActorPassword();
 		await loginPage.pressLoginButton();
 
 		await expect(page).toHaveURL('/web/index.php/dashboard/index');
