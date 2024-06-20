@@ -1,12 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../../fixtures/login-page-fixture';
 
-const knownUser = 'Admin';
-const knownPassword = 'admin123';
-const unknownUser = 'IAMGOD';
-const unknownPassword = 'LetMeInPlease123';
-const emptyInput = '';
-
 test(
 	'An invalid user attempts to login with an unknown password only',
 	{
@@ -18,8 +12,8 @@ test(
 	},
 	async ({ base, loginPage, page }): Promise<void> => {
 		await base.navigateToUrl('/web/index.php/auth/login');
-		await loginPage.fillUserName(emptyInput);
-		await loginPage.fillPassword(unknownPassword);
+		await loginPage.fillUserNameWithEmptyString();
+		await loginPage.fillBadActorPassword();
 		await loginPage.pressLoginButton();
 
 		await expect(page.getByText('Required')).toBeVisible();
@@ -37,8 +31,8 @@ test(
 	},
 	async ({ base, loginPage, page }): Promise<void> => {
 		await base.navigateToUrl('/web/index.php/auth/login');
-		await loginPage.fillUserName(unknownUser);
-		await loginPage.fillPassword(emptyInput);
+		await loginPage.fillBadActorUserName();
+		await loginPage.fillPasswordWithEmptyString();
 		await loginPage.pressLoginButton();
 
 		await expect(page.getByText('Required')).toBeVisible();
@@ -56,8 +50,8 @@ test(
 	},
 	async ({ base, loginPage, page }): Promise<void> => {
 		await base.navigateToUrl('/web/index.php/auth/login');
-		await loginPage.fillUserName(unknownUser);
-		await loginPage.fillPassword(unknownPassword);
+		await loginPage.fillBadActorUserName();
+		await loginPage.fillBadActorPassword();
 		await loginPage.pressLoginButton();
 
 		await expect(page.getByText('Invalid credentials')).toBeVisible();
@@ -75,8 +69,8 @@ test(
 	},
 	async ({ base, loginPage, page }): Promise<void> => {
 		await base.navigateToUrl('/web/index.php/auth/login');
-		await loginPage.fillUserName(knownUser);
-		await loginPage.fillPassword(unknownPassword);
+		await loginPage.fillGoodActorUserName();
+		await loginPage.fillBadActorPassword();
 		await loginPage.pressLoginButton();
 
 		await expect(page.getByText('Invalid credentials')).toBeVisible();
@@ -94,8 +88,8 @@ test(
 	},
 	async ({ base, loginPage, page }): Promise<void> => {
 		await base.navigateToUrl('/web/index.php/auth/login');
-		await loginPage.fillUserName(unknownUser);
-		await loginPage.fillPassword(knownPassword);
+		await loginPage.fillBadActorUserName();
+		await loginPage.fillGoodActorPassword();
 		await loginPage.pressLoginButton();
 
 		await expect(page.getByText('Invalid credentials')).toBeVisible();
@@ -113,8 +107,8 @@ test(
 	},
 	async ({ base, loginPage, page }): Promise<void> => {
 		await base.navigateToUrl('/web/index.php/auth/login');
-		await loginPage.fillUserName(emptyInput);
-		await loginPage.fillPassword(emptyInput);
+		await loginPage.fillUserNameWithEmptyString();
+		await loginPage.fillPasswordWithEmptyString();
 		await loginPage.pressLoginButton();
 
 		await expect(page.getByText('Required').first()).toBeVisible();

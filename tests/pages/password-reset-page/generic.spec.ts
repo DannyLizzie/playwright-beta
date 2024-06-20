@@ -10,7 +10,7 @@ test(
 		await loginPage.pressForgotPasswordButton(),
 			expect(page).toHaveURL('/web/index.php/auth/requestPasswordResetCode');
 
-		await passwordResetPage.fillUserName('Admin');
+		await passwordResetPage.fillGoodActorUserName();
 		await passwordResetPage.pressResetButton();
 
 		await expect(page).toHaveURL('/web/index.php/auth/sendPasswordReset');
@@ -26,7 +26,7 @@ test(
 		await loginPage.pressForgotPasswordButton(),
 			expect(page).toHaveURL('/web/index.php/auth/requestPasswordResetCode');
 
-		await passwordResetPage.fillUserName('Admin');
+		await passwordResetPage.fillGoodActorUserName();
 		await passwordResetPage.pressCancelButton();
 
 		await expect(page).toHaveURL('/web/index.php/auth/login');
